@@ -1,0 +1,1 @@
+# shahidasghar90-adblock-detector-popup
