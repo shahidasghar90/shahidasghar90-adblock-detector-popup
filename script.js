@@ -22,9 +22,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         overlay.innerHTML = `
             <div id="adblock-popup">
-                <h2>Ad Blocker Detected</h2>
-                <p>Please disable your ad blocker to view the full content. We rely on ads to keep this site free.</p>
-                <button id="recheck-adblock">I’ve Disabled AdBlock</button>
+                <h2>${adblockDetectorData.title}</h2>
+                <p>${adblockDetectorData.message}</p>
+                <button id="recheck-adblock">${adblockDetectorData.button}</button>
             </div>
         `;
 
@@ -32,14 +32,14 @@ document.addEventListener("DOMContentLoaded", function () {
         overlay.style.display = 'flex';
 
         document.getElementById("recheck-adblock").addEventListener("click", () => {
-            const recheckBait = document.createElement('div');
-            recheckBait.className = 'adsbox ad adsbygoogle';
-            recheckBait.style = 'width: 1px; height: 1px; position: absolute; left: -999px;';
-            document.body.appendChild(recheckBait);
+            const baitRetry = document.createElement('div');
+            baitRetry.className = 'adsbox ad adsbygoogle';
+            baitRetry.style = 'width: 1px; height: 1px; position: absolute; left: -999px;';
+            document.body.appendChild(baitRetry);
 
             setTimeout(() => {
-                const stillBlocked = recheckBait.offsetHeight === 0;
-                recheckBait.remove();
+                const stillBlocked = baitRetry.offsetHeight === 0;
+                baitRetry.remove();
 
                 if (!stillBlocked) {
                     document.getElementById("adblock-overlay").remove();
